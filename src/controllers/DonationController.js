@@ -59,20 +59,21 @@ async function addBloodExams(request, response) {
         // Procura um doador que tenha uma doação com o ID especificado
         const donor = await Donor.findOne({ "donationHistory._id": id });
 
-        // Se o doador for encontrado, recupera a doação do histórico de doações do doador
+        // Se o doador for encontrado, recupera a doação do histórico de doações do doador.
         const donation = donor ? donor.donationHistory.id(id) : null;
 
-        // Se o doador ou a doação não forem encontrados, retorna uma mensagem de erro
+        // Se o doador ou a doação não forem encontrados, retorna uma mensagem de erro.
         if (!donor || !donation) {
             return response.status(404).json({ error: `Doação não encontrada` });
         }
 
-        // Verifica se já existe um bloodTest para a doação atual
+        // Verifica se ja existe um bloodTest para a doação atual.
         if (donation.bloodTest && donation.bloodTest.length > 0) {
-            return response.status(400).json({ error: `Já existe um exame de sangue para esta doação.` });
+
+             return response.status(400).json({ error: `Já existe um exame de sangue para esta doação.` });
         }
 
-        // Cria um novo objeto bloodTest
+        // Cria um novo objeto bloodTest.
         const newBloodTest = {
             bloodType: bloodType,
             exams: exams,

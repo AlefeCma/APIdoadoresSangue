@@ -56,13 +56,13 @@ async function getDonor(request, response) {
             if (donors.length === 0) {
                 return response.status(404).json({ error: 'Nenhum doador encontrado' });
             }
-            return response.status(200).json(donors); // Retorna todos os doadores encontrados
+            return response.status(200).json(donors); // Retorna todos os doadores encontrados.
         }
 
         if (!donor) {
             response.status(404).json({ error: `ID ${id} não corresponde a nenhum doador` });
         } else {
-            response.status(200).json(donor); // Retorna o doador correspondente ao id fornecido
+            response.status(200).json(donor); // Retorna o doador correspondente ao id fornecido.
         }
     } catch (error) {
         if (id) {
